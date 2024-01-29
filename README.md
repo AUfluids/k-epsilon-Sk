@@ -44,7 +44,7 @@ If you use $ck = 0$ in the _kSource_'s implemented in _fvOptions_ file as _scala
 
 $\bullet$ Update the _system/blockMeshDict_ and _system/topoSetDict_ based on the layout of the wind farm under study.
 
-$\bullet$ Update the _constant/fvOptions_ based on the layout of the wind farm under study and the operating conditions of the turbines.
+$\bullet$ Update the disks' information in _constant/fvOptions_ based on the layout of the wind farm under study and the operating conditions of the turbines.
 
 $\bullet$ Update the the operating conditions of the turbines in _kSource_'s implemented in _fvOptions_ file as _scalarCodedSource_.
 
