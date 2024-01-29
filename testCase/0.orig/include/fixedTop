@@ -1,0 +1,15 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+topVelocity         (9.26 0 0); // from inletAndTop_conditions.m
+topK          	    0.322944;  // from inletAndTop_conditions.m
+topEpsilon          0.000212364;  // from inletAndTop_conditions.m
+topOmega	    0.007306539;  // from inletAndTop_conditions.m
+
+
+// ************************************************************************* //

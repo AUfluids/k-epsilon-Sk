@@ -1,0 +1,72 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+type sets; 
+libs    ("libsampling.so");
+ 
+interpolationScheme      cellPoint; 
+ 
+setFormat   raw; 
+ 
+sets 
+(     
+zlineInlet              
+{         
+type            uniform;         //uniform
+axis            z;         
+start           (-399 0 0);         
+end             (-399 0 360);         
+nPoints         46; 
+} 
+zline0D              
+{         
+type            uniform;         //uniform
+axis            z;         
+start           (0 0 0);         
+end             (0 0 360);         
+nPoints         46;
+}
+zline5D              
+{         
+type            uniform;         //uniform
+axis            z;         
+start           (400 0 0);         
+end             (400 0 360);         
+nPoints         46;
+}
+zline10D              
+{         
+type            uniform;         //uniform
+axis            z;         
+start           (800 0 0);         
+end             (800 0 360);         
+nPoints         46;
+}  
+zline20D              
+{         
+type            uniform;         //uniform
+axis            z;         
+start           (1600 0 0);         
+end             (1600 0 360);         
+nPoints         46;
+} 
+zline40D              
+{         
+type            uniform;         //uniform
+axis            z;         
+start           (3200 0 0);         
+end             (3200 0 360);         
+nPoints         46;
+} 
+
+); 
+ 
+
+fields                  (U p k nut);
+
+// ************************************************************************* //

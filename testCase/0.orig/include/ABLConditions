@@ -1,0 +1,19 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+Uref                 8.0;
+Zref                 70;
+zDir                 (0 0 1);
+flowDir              (1 0 0);
+z0                   uniform 0.00239994;
+d              	     uniform 0;
+kappa		     0.40; //original value 0.40
+Cmu		     0.09; // std k epslin value 0.09, van der laan fp k epsilon value 0.03
+value                $internalField;
+
+// ************************************************************************* //

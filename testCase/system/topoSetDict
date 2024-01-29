@@ -1,0 +1,167 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+actions
+(
+    	// actuationDisk1
+    {
+        name    actuationDisk1CellSet;
+        type    cellSet;
+        action  new;
+        source  cylinderToCell;  
+        sourceInfo
+        {
+	    p1 (-5 0 70);
+	    p2 (5 0 70); 
+	    radius 40;
+        }
+    }
+    {
+        name    actuationDisk1;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set actuationDisk1CellSet;
+        }
+    }
+
+	// actuationDisk2
+    {
+        name    actuationDisk2CellSet;
+        type    cellSet;
+        action  new;
+        source  cylinderToCell;  
+        sourceInfo
+        {
+	    p1 (555 0 70);
+	    p2 (565 0 70); 
+	    radius 40;
+        }
+    }
+    {
+        name    actuationDisk2;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set actuationDisk2CellSet;
+        }
+    }
+	
+	// actuationDisk3
+    {
+        name    actuationDisk3CellSet;
+        type    cellSet;
+        action  new;
+        source  cylinderToCell;  
+        sourceInfo
+        {
+	    p1 (1115 0 70);
+	    p2 (1125 0 70); 
+	    radius 40;
+        }
+    }
+    {
+        name    actuationDisk3;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set actuationDisk3CellSet;
+        }
+    }
+	
+	
+	// actuationDisk4
+    {
+        name    actuationDisk4CellSet;
+        type    cellSet;
+        action  new;
+        source  cylinderToCell;  
+        sourceInfo
+        {
+	    p1 (1675 0 70);
+	    p2 (1685 0 70); 
+	    radius 40;
+        }
+    }
+    {
+        name    actuationDisk4;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set actuationDisk4CellSet;
+        }
+    }
+	
+	// actuationDisk5
+    {
+        name    actuationDisk5CellSet;
+        type    cellSet;
+        action  new;
+        source  cylinderToCell;   
+        sourceInfo
+        {
+	    p1 (2235 0 70);
+	    p2 (2245 0 70);
+	    radius 40;
+        }
+    }
+    {
+        name    actuationDisk5;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set actuationDisk5CellSet;
+        }
+    }
+	
+	// actuationDisk6
+    {
+        name    actuationDisk6CellSet;
+        type    cellSet;
+        action  new;
+        source  cylinderToCell;   
+        sourceInfo
+        {
+	    p1 (2795 0 70);
+	    p2 (2805 0 70); 
+	    radius 40;
+        }
+    }
+    {
+        name    actuationDisk6;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set actuationDisk6CellSet;
+        }
+    }
+	
+);
+
+// ************************************************************************* //

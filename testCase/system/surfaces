@@ -1,0 +1,451 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+
+surfaces
+{ 
+type surfaces;
+libs    ("libsampling.so");
+ 
+interpolationScheme      cellPoint; 
+ 
+surfaceFormat   raw; 
+
+     fields         (U k);
+
+    surfaces
+    (
+   yNormal {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (100 0 100);
+            normal  (0 1 0);
+          }
+		  }
+		  zNormal {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (100 0 70);
+            normal  (0 0 1);
+          }
+		  }
+
+		  xNormal_min1D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (-80 0 70);
+            normal  (1 0 0);
+          }
+		  }
+        
+		  xNormal_min2D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (-160 0 70);
+            normal  (1 0 0);
+          }
+		  }
+        
+		  xNormal_min3D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (-240 0 70);
+            normal  (1 0 0);
+          }
+		  }
+
+		  xNormal_min4D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (-320 0 70);
+            normal  (1 0 0);
+          }
+		  }
+        
+
+		  xNormal_0D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (0 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_1D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (80 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_2D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (160 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_3D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (240 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_4D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (320 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_5D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (400 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_6D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (480 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_7D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (560 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_8D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (640 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_9D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (720 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_10D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (800 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_11D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (880 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_12D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (960 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_13D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (1040 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_14D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (1120 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_15D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (1200 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_16D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (1280 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_17D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (1360 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_18D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (1440 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_19D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (1520 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_20D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (1600 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_21D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (1680 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_22D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (1760 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_23D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (1840 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_24D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (1920 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_25D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (2000 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_26D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (2080 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_27D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (2160 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_28D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (2240 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_29D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (2320 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_30D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (2400 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_31D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (2480 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_32D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (2560 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_33D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (2640 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_34D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (2720 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_35D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (2800 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_36D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (2880 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_37D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (2960 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_38D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (3040 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_39D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (3120 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_40D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (3200 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_41D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (3280 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_42D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (3360 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_43D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (3440 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_44D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (3520 0 70);
+            normal  (1 0 0);
+          }
+		  }
+		  xNormal_45D {
+          type            cuttingPlane;
+          planeType       pointAndNormal;
+          pointAndNormalDict {
+            point     (3600 0 70);
+            normal  (1 0 0);
+          }
+		  }
+    );
+}
+ 
+ 
+
+
+// ************************************************************************* //

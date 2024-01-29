@@ -1,0 +1,536 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvOptions;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+disk1
+{
+    type            ADM_NR_diskBased;
+    variant         variableScaling;     	
+    fields      (U);
+    writeToFile     true;
+    writePrecision    4;
+    sink            true;
+    selectionMode   cellSet;
+    cellSet         actuationDisk1;
+    diskDir         (1 0 0);    
+    Cp              0.5625;
+    Ct              0.75;	
+    diskArea        5024; 
+    upstreamPoint   (0 0 70);  
+}
+
+kSource1
+{
+    type            scalarCodedSource;
+    selectionMode   cellSet;
+    cellSet         actuationDisk1;
+    active			    true;
+    fields          (k);
+    name            kSource1;
+    
+    codeInclude
+     #{
+                #include "OFstream.H"
+	   #};
+    
+    codeCorrect
+     #{
+     #};
+
+    codeConstrain
+     #{
+     #};
+
+    codeAddSup
+            #{
+                const scalar& ck_ = 1.0;
+                
+                const scalar& CT_ = 0.75;
+                const scalar& CP_ = 0.5625;
+                const scalar& diskArea_ = 5024;
+                scalar a_ = 1.0 - CP_/CT_; 				
+                scalar CtStar_ = CT_*1.0/sqr(1.0 - a_); 
+                const scalar& rho_ = 1.02;
+                
+                const Time& time = mesh_.time();
+                const scalarField& cellsV = mesh_.V();
+                scalarField& kSource1 = eqn.source();
+                const volVectorField& U = mesh().lookupObject<volVectorField>("U");
+                const volScalarField& k = mesh().lookupObject<volScalarField>("k");
+                
+                const labelList& cellIDs = cells();
+                
+                vector Udisk(Zero);
+                scalar kdisk =0;
+                scalar totalV = 0.0;
+                forAll(cellIDs, i)
+                {
+                    label cellI = cellIDs[i];
+                       
+                    Udisk += U[cellI]*cellsV[cellI];
+                    kdisk += k[cellI]*cellsV[cellI];
+                    totalV += cellsV[cellI];
+                }
+                reduce(Udisk, sumOp<vector>());
+                reduce(kdisk, sumOp<scalar>());
+                reduce(totalV, sumOp<scalar>());
+                Udisk /= totalV;
+                kdisk /= totalV;
+                const scalar magUdisk = Foam::mag(Udisk);
+
+                const scalar Sk = 0.5*rho_*diskArea_*1.33* (2* 2/3 * kdisk* magUdisk + pow((2/3 * kdisk),1.5)) * ck_; 
+
+                forAll(cellIDs, i)
+                {
+                    label cellI = cellIDs[i];
+                    kSource1[cellI] += (cellsV[cellI]/totalV*Sk); 
+                }
+            #};
+}
+// ************************************************************************* //
+disk2
+{
+    type            ADM_NR_diskBased;
+    variant         variableScaling;     	
+    fields      (U);
+    writeToFile     true;
+    writePrecision    4;
+    sink            true;
+    selectionMode   cellSet;
+    cellSet         actuationDisk2;
+    diskDir         (1 0 0);    
+    Cp              0.5625;
+    Ct              0.75;	
+    diskArea        5024; 
+    upstreamPoint   (560 0 70);  
+
+}
+
+kSource2
+{
+    type            scalarCodedSource;
+    selectionMode   cellSet;
+    cellSet         actuationDisk2;
+    active			    true;
+    fields          (k);
+    name            kSource2;
+    
+    codeInclude
+     #{
+                #include "OFstream.H"
+	   #};
+    
+    codeCorrect
+     #{
+     #};
+
+    codeConstrain
+     #{
+     #};
+
+    codeAddSup
+            #{
+                const scalar& ck_ = 1.0;
+                
+                const scalar& CT_ = 0.75;
+                const scalar& CP_ = 0.5625;
+                const scalar& diskArea_ = 5024;
+                scalar a_ = 1.0 - CP_/CT_; 				
+                scalar CtStar_ = CT_*1.0/sqr(1.0 - a_); 
+                const scalar& rho_ = 1.02;
+                
+                const Time& time = mesh_.time();
+                const scalarField& cellsV = mesh_.V();
+                scalarField& kSource2 = eqn.source();
+                const volVectorField& U = mesh().lookupObject<volVectorField>("U");
+                const volScalarField& k = mesh().lookupObject<volScalarField>("k");
+                
+                const labelList& cellIDs = cells();
+                
+                vector Udisk(Zero);
+                scalar kdisk =0;
+                scalar totalV = 0.0;
+                forAll(cellIDs, i)
+                {
+                    label cellI = cellIDs[i];
+                       
+                    Udisk += U[cellI]*cellsV[cellI];
+                    kdisk += k[cellI]*cellsV[cellI];
+                    totalV += cellsV[cellI];
+                }
+                reduce(Udisk, sumOp<vector>());
+                reduce(kdisk, sumOp<scalar>());
+                reduce(totalV, sumOp<scalar>());
+                Udisk /= totalV;
+                kdisk /= totalV;
+                const scalar magUdisk = Foam::mag(Udisk);
+                
+                const scalar Sk = 0.5*rho_*diskArea_*1.33* (2* 2/3 * kdisk* magUdisk + pow((2/3 * kdisk),1.5)) * ck_;  
+                
+                forAll(cellIDs, i)
+                {
+                    label cellI = cellIDs[i];
+                    kSource2[cellI] += (cellsV[cellI]/totalV*Sk); 
+                }
+            #};
+}
+// ************************************************************************* //
+disk3
+{
+    type            ADM_NR_diskBased;
+    variant         variableScaling;     	
+    fields      (U);
+    writeToFile     true;
+    writePrecision    4;
+    sink            true;
+    selectionMode   cellSet;
+    cellSet         actuationDisk3;
+    diskDir         (1 0 0);   
+    Cp              0.5625;
+    Ct              0.75;	
+    diskArea        5024; 
+    upstreamPoint   (1120 0 70);  
+
+}
+
+kSource3
+{
+    type            scalarCodedSource;
+    selectionMode   cellSet;
+    cellSet         actuationDisk3;
+    active			    true;
+    fields          (k);
+    name            kSource3;
+    
+    codeInclude
+     #{
+                #include "OFstream.H"
+	   #};
+    
+    codeCorrect
+     #{
+     #};
+
+    codeConstrain
+     #{
+     #};
+
+    codeAddSup
+            #{
+                const scalar& ck_ = 1.0;
+                
+                const scalar& CT_ = 0.75;
+                const scalar& CP_ = 0.5625;
+                const scalar& diskArea_ = 5024;
+                scalar a_ = 1.0 - CP_/CT_; 				
+                scalar CtStar_ = CT_*1.0/sqr(1.0 - a_); 
+                const scalar& rho_ = 1.02;
+                
+                const Time& time = mesh_.time();
+                const scalarField& cellsV = mesh_.V();
+                scalarField& kSource3 = eqn.source();
+                const volVectorField& U = mesh().lookupObject<volVectorField>("U");
+                const volScalarField& k = mesh().lookupObject<volScalarField>("k");
+                
+                const labelList& cellIDs = cells();
+                
+                vector Udisk(Zero);
+                scalar kdisk =0;
+                scalar totalV = 0.0;
+                forAll(cellIDs, i)
+                {
+                    label cellI = cellIDs[i];
+                       
+                    Udisk += U[cellI]*cellsV[cellI];
+                    kdisk += k[cellI]*cellsV[cellI];
+                    totalV += cellsV[cellI];
+                }
+                reduce(Udisk, sumOp<vector>());
+                reduce(kdisk, sumOp<scalar>());
+                reduce(totalV, sumOp<scalar>());
+                Udisk /= totalV;
+                kdisk /= totalV;
+                const scalar magUdisk = Foam::mag(Udisk);
+                
+                const scalar Sk = 0.5*rho_*diskArea_*1.33* (2* 2/3 * kdisk* magUdisk + pow((2/3 * kdisk),1.5)) * ck_;  
+                
+                forAll(cellIDs, i)
+                {
+                    label cellI = cellIDs[i];                    
+                    kSource3[cellI] += (cellsV[cellI]/totalV*Sk); 
+                }
+            #};
+}
+// ************************************************************************* //
+disk4
+{
+    type            ADM_NR_diskBased;
+    variant         variableScaling;    
+    fields      (U);
+    writeToFile     true;
+    writePrecision    4;
+    sink            true;
+    selectionMode   cellSet;
+    cellSet         actuationDisk4;
+    diskDir         (1 0 0);    
+    Cp              0.5625;
+    Ct              0.75;	
+    diskArea        5024; 
+    upstreamPoint   (1680 0 70);  
+
+}
+
+kSource4
+{
+    type            scalarCodedSource;
+    selectionMode   cellSet;
+    cellSet         actuationDisk4;
+    active			    true;
+    fields          (k);
+    name            kSource4;
+    
+    codeInclude
+     #{
+                #include "OFstream.H"
+	   #};
+    
+    codeCorrect
+     #{
+     #};
+
+    codeConstrain
+     #{
+     #};
+
+    codeAddSup
+            #{
+                const scalar& ck_ = 1.0;
+                
+                const scalar& CT_ = 0.75;
+                const scalar& CP_ = 0.5625;
+                const scalar& diskArea_ = 5024;
+                scalar a_ = 1.0 - CP_/CT_; 				
+                scalar CtStar_ = CT_*1.0/sqr(1.0 - a_); 
+                const scalar& rho_ = 1.02;
+                
+                const Time& time = mesh_.time();
+                const scalarField& cellsV = mesh_.V();
+                scalarField& kSource4 = eqn.source();
+                const volVectorField& U = mesh().lookupObject<volVectorField>("U");
+                const volScalarField& k = mesh().lookupObject<volScalarField>("k");
+                
+                const labelList& cellIDs = cells();
+                
+                vector Udisk(Zero);
+                scalar kdisk =0;
+                scalar totalV = 0.0;
+                forAll(cellIDs, i)
+                {
+                    label cellI = cellIDs[i];
+                       
+                    Udisk += U[cellI]*cellsV[cellI];
+                    kdisk += k[cellI]*cellsV[cellI];
+                    totalV += cellsV[cellI];
+                }
+                reduce(Udisk, sumOp<vector>());
+                reduce(kdisk, sumOp<scalar>());
+                reduce(totalV, sumOp<scalar>());
+                Udisk /= totalV;
+                kdisk /= totalV;
+                const scalar magUdisk = Foam::mag(Udisk);
+              
+                const scalar Sk = 0.5*rho_*diskArea_*1.33* (2* 2/3 * kdisk* magUdisk + pow((2/3 * kdisk),1.5)) * ck_;  
+                
+                forAll(cellIDs, i)
+                {
+                    label cellI = cellIDs[i];
+                    kSource4[cellI] += (cellsV[cellI]/totalV*Sk); 
+                }
+            #};
+}
+// ************************************************************************* //
+disk5
+{
+    type            ADM_NR_diskBased;
+    variant         variableScaling;     	
+    fields      (U);
+    writeToFile     true;
+    writePrecision    4;
+    sink            true;
+    selectionMode   cellSet;
+    cellSet         actuationDisk5;
+    diskDir         (1 0 0);   
+    Cp              0.5625;
+    Ct              0.75;	
+    diskArea        5024; 
+    upstreamPoint   (2240 0 70);  
+
+}
+
+kSource5
+{
+    type            scalarCodedSource;
+    selectionMode   cellSet;
+    cellSet         actuationDisk5;
+    active			    true;
+    fields          (k);
+    name            kSource5;
+    
+    codeInclude
+     #{
+                #include "OFstream.H"
+	   #};
+    
+    codeCorrect
+     #{
+     #};
+
+    codeConstrain
+     #{
+     #};
+
+    codeAddSup
+            #{
+                const scalar& ck_ = 1.0;
+                
+                const scalar& CT_ = 0.75;
+                const scalar& CP_ = 0.5625;
+                const scalar& diskArea_ = 5024;
+                scalar a_ = 1.0 - CP_/CT_; 				
+                scalar CtStar_ = CT_*1.0/sqr(1.0 - a_); 
+                const scalar& rho_ = 1.02;
+                
+                const Time& time = mesh_.time();
+                const scalarField& cellsV = mesh_.V();
+                scalarField& kSource5 = eqn.source();
+                const volVectorField& U = mesh().lookupObject<volVectorField>("U");
+                const volScalarField& k = mesh().lookupObject<volScalarField>("k");
+                
+                const labelList& cellIDs = cells();
+                
+                vector Udisk(Zero);
+                scalar kdisk =0;
+                scalar totalV = 0.0;
+                forAll(cellIDs, i)
+                {
+                    label cellI = cellIDs[i];
+                       
+                    Udisk += U[cellI]*cellsV[cellI];
+                    kdisk += k[cellI]*cellsV[cellI];
+                    totalV += cellsV[cellI];
+                }
+                reduce(Udisk, sumOp<vector>());
+                reduce(kdisk, sumOp<scalar>());
+                reduce(totalV, sumOp<scalar>());
+                Udisk /= totalV;
+                kdisk /= totalV;
+                const scalar magUdisk = Foam::mag(Udisk);
+
+                const scalar Sk = 0.5*rho_*diskArea_*1.33* (2* 2/3 * kdisk* magUdisk + pow((2/3 * kdisk),1.5)) * ck_; 
+                
+                forAll(cellIDs, i)
+                {
+                    label cellI = cellIDs[i]; 
+                    kSource5[cellI] += (cellsV[cellI]/totalV*Sk); 
+                }
+            #};
+}
+// ************************************************************************* //
+disk6
+{
+    type            ADM_NR_diskBased;
+    variant         variableScaling;     	
+    fields      (U);
+    writeToFile     true;
+    writePrecision    4;
+    sink            true;
+    selectionMode   cellSet;
+    cellSet         actuationDisk6;
+    diskDir         (1 0 0);    
+    Cp              0.5625;
+    Ct              0.75;	
+    diskArea        5024; 
+    upstreamPoint   (2800 0 70);  
+
+}
+
+kSource6
+{
+    type            scalarCodedSource;
+    selectionMode   cellSet;
+    cellSet         actuationDisk6;
+    active			    true;
+    fields          (k);
+    name            kSource6;
+    
+    codeInclude
+     #{
+                #include "OFstream.H"
+	   #};
+    
+    codeCorrect
+     #{
+     #};
+
+    codeConstrain
+     #{
+     #};
+
+    codeAddSup
+            #{
+                const scalar& ck_ = 1.0;
+                
+                const scalar& CT_ = 0.75;
+                const scalar& CP_ = 0.5625;
+                const scalar& diskArea_ = 5024;
+                scalar a_ = 1.0 - CP_/CT_; 				
+                scalar CtStar_ = CT_*1.0/sqr(1.0 - a_); 
+                const scalar& rho_ = 1.02;
+                
+                const Time& time = mesh_.time();
+                const scalarField& cellsV = mesh_.V();
+                scalarField& kSource6 = eqn.source();
+                const volVectorField& U = mesh().lookupObject<volVectorField>("U");
+                const volScalarField& k = mesh().lookupObject<volScalarField>("k");
+                
+                const labelList& cellIDs = cells();
+                
+                vector Udisk(Zero);
+                scalar kdisk =0;
+                scalar totalV = 0.0;
+                forAll(cellIDs, i)
+                {
+                    label cellI = cellIDs[i];
+                       
+                    Udisk += U[cellI]*cellsV[cellI];
+                    kdisk += k[cellI]*cellsV[cellI];
+                    totalV += cellsV[cellI];
+                }
+                reduce(Udisk, sumOp<vector>());
+                reduce(kdisk, sumOp<scalar>());
+                reduce(totalV, sumOp<scalar>());
+                Udisk /= totalV;
+                kdisk /= totalV;
+                const scalar magUdisk = Foam::mag(Udisk);
+
+                const scalar Sk = 0.5*rho_*diskArea_*1.33* (2* 2/3 * kdisk* magUdisk + pow((2/3 * kdisk),1.5)) * ck_; 
+                
+                forAll(cellIDs, i)
+                {
+                    label cellI = cellIDs[i];                    
+                    kSource6[cellI] += (cellsV[cellI]/totalV*Sk); 
+                }
+            #};
+}
+// ************************************************************************* //

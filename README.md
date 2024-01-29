@@ -5,8 +5,8 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) 
 
 
-# k-epsilon-Sk
-An extended $k-\varepsilon$ model integrated with OpenFOAM for simulation of turbine wakes and power losses in wind farms, as proposed by [Zehtabiyan-Rezaie and Abkar (2024)](https://doi.org/10.1016/j.renene.2023.119904) at the Fluid Mechanics and Turbulence research group at Aarhus University, Denmark. 
+# Extended-kEpsilon-WindFarmSimulation
+An extended $k-\varepsilon$ model integrated with OpenFOAM for simulation of turbine wakes and power losses in wind farms, as proposed by [Zehtabiyan-Rezaie and Abkar (2023)](https://doi.org/10.1016/j.renene.2023.119904) at the Fluid Mechanics and Turbulence research group at Aarhus University, Denmark. 
 
 # Description
 We introduce an extended version of the standard $k-\varepsilon$ model within the OpenFOAM framework, with a primary focus on its application in the context of wind-farm simulations. The standard $k-\varepsilon$ model, while widely used, is known to exhibit limitations in accurately representing turbulence characteristics within the wake region of turbines. This often results in an overestimation of turbulence intensity and, consequently, an inaccurate prediction of the power losses in wind farms. To address this challenge, our extended model incorporates an additional term in the turbulent kinetic energy transport equation, which accounts for the influence of turbine forces. This modification is based on a rigorous analytical approach derived from fundamental physical principles. For a comprehensive understanding of this extended turbulence model and its application in wind-farm simulation, additional information can be found in this [publication](https://doi.org/10.1016/j.renene.2023.119904).
@@ -14,8 +14,8 @@ We introduce an extended version of the standard $k-\varepsilon$ model within th
 # Target platform
 The code has been rigorously tested and verified to be fully compatible with OpenFOAM v-2112, ensuring its smooth integration and reliable performance with this specific release.
 
-# Author
-[Navid Zehtabiyan-Rezaie](https://sites.google.com/view/zehtabiyan/home)
+<!-- # Author
+[Navid Zehtabiyan-Rezaie](https://sites.google.com/view/zehtabiyan/home) -->
 
 # How to set the model
 1- Download the source code.
@@ -52,7 +52,7 @@ Normalized power of turbines in a six-turbine case under full-wake conditions $\
 
   <img src="https://github.com/nzhtbyn/Extended-kEpsilon-WindFarmSimulation/blob/main/testCase/case1_layout_NP.png" width="900" height="150" alt="Normalized power of turbines in three validation cases">
 
-The performance of the extended $k-\varepsilon$ model has been further assessed through extensive testing against data from wind-tunnel measurements and large-eddy simulations for three validation cases with different layouts under full and partial wake conditions, a $10 \times 3$ array of turbines, and the Horns rev 1 Offshore Wind Farm in the study of [Zehtabiyan-Rezaie and Abkar (2024)](https://doi.org/10.1016/j.renene.2023.119904).
+The performance of the extended $k-\varepsilon$ model has been further assessed through extensive testing against data from wind-tunnel measurements and large-eddy simulations for three validation cases with different layouts under full and partial wake conditions, a $10 \times 3$ array of turbines, and the Horns rev 1 Offshore Wind Farm in the study of [Zehtabiyan-Rezaie and Abkar (2023)](https://doi.org/10.1016/j.renene.2023.119904).
 
 <!-- Streamwise velocity in turbine wakes in a wind farm consisting of a $10 \times 3$ array of turbines. Comparison of profiles against wind-tunnel measurement from the  study of [Chamorro and Porté-Agel](https://doi.org/10.3390/en4111916):
 ![WindTunnelMeasurements](https://github.com/nzhtbyn/FiguresForCodes/blob/main/Extended-kEpsilon-WindFarmSim/vertical_vs_experiment.png)
@@ -65,12 +65,12 @@ Please, cite this library as:
 ```
 @article{ZEHTABIYANREZAIE_RENE2024,
 title = {An extended k−ɛ model for wake-flow simulation of wind farms},
-author = {Navid Zehtabiyan-Rezaie and Mahdi Abkar},
 journal = {Renewable Energy},
 volume = {222},
 pages = {119904},
 year = {2024},
 doi = {https://doi.org/10.1016/j.renene.2023.119904},
-url = {https://www.sciencedirect.com/science/article/pii/S0960148123018190}
+url = {https://www.sciencedirect.com/science/article/pii/S0960148123018190},
+author = {Navid Zehtabiyan-Rezaie and Mahdi Abkar},
 }
 ```

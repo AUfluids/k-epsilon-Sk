@@ -1,0 +1,154 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+    class           dictionary;
+    object          blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+backgroundMesh
+{
+   xMin      	-400;
+    xMax       4000;
+    yMin      -200;
+    yMax       200;
+    zMin      0;
+    zMax       355;
+	
+    xCells    234; 
+    yCells    40; 
+    zCells    58;
+}
+
+scale   1;
+
+vertices
+(
+    ($:backgroundMesh.xMin $:backgroundMesh.yMin $:backgroundMesh.zMin)
+    ($:backgroundMesh.xMax $:backgroundMesh.yMin $:backgroundMesh.zMin)
+    ($:backgroundMesh.xMax $:backgroundMesh.yMax $:backgroundMesh.zMin)
+    ($:backgroundMesh.xMin $:backgroundMesh.yMax $:backgroundMesh.zMin)
+
+    ($:backgroundMesh.xMin $:backgroundMesh.yMin $:backgroundMesh.zMax)
+    ($:backgroundMesh.xMax $:backgroundMesh.yMin $:backgroundMesh.zMax)
+    ($:backgroundMesh.xMax $:backgroundMesh.yMax $:backgroundMesh.zMax)
+    ($:backgroundMesh.xMin $:backgroundMesh.yMax $:backgroundMesh.zMax)
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7)
+    (
+        $:backgroundMesh.xCells
+        $:backgroundMesh.yCells
+        $:backgroundMesh.zCells
+    )
+    simpleGrading 
+	(
+		// x direction
+		(
+			(360 360 1)
+			(40 80 0.5) // T1 in
+			(40 80 2) // T1 out
+			(480 480 1)
+			(40 80 0.5) // T2 in
+			(40 80 2) // T2 out
+			(480 480 1)
+			(40 80 0.5) // T3 in
+			(40 80 2) // T3 out
+			(480 480 1)
+			(40 80 0.5) // T4 in
+			(40 80 2) // T4 out
+			(480 480 1)
+			(40 80 0.5) // T5 in
+			(40 80 2) // T5 out
+			(480 480 1)
+			(40 80 0.5) // T6 in
+			(40 80 2) // T6 out
+			(1160 1160 1)
+		)
+		// y direction
+		(
+			1
+		)
+		// z direction
+		(
+			3
+		)
+	
+	)
+);
+
+edges
+(
+);
+
+boundary
+(
+	inlet
+    {
+        type patch;
+        faces
+        (
+            (0 4 7 3)
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (2 6 5 1)
+        );
+    }
+    side1
+    {
+        type cyclic;
+		neighbourPatch side2;
+        faces
+        (
+            (1 5 4 0)
+        );
+    }
+	side2
+    {
+        type cyclic;
+		neighbourPatch side1;
+        faces
+        (
+            (3 7 6 2)
+        );
+    }
+
+    ground
+    {
+        type wall;
+        faces
+        (
+            (0 3 2 1)
+        );
+    }
+    top
+    {
+        type patch;
+        faces
+        (
+            (4 5 6 7)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+
+// ************************************************************************* //
