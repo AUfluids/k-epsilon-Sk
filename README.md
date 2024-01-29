@@ -14,8 +14,8 @@ We introduce an extended version of the standard $k-\varepsilon$ model within th
 # Target platform
 The code has been rigorously tested and verified to be fully compatible with OpenFOAM v-2112, ensuring its smooth integration and reliable performance with this specific release.
 
-<!-- # Author
-[Navid Zehtabiyan-Rezaie](https://sites.google.com/view/zehtabiyan/home) -->
+# Author
+[Navid Zehtabiyan-Rezaie](https://sites.google.com/view/zehtabiyan/home)
 
 # How to set the model
 1- Download the source code.
