@@ -50,7 +50,7 @@ $\bullet$ Update the the operating conditions of the turbines in _kSource_'s imp
 # Evaluation of the extended model's performance
 Normalized power of turbines in a six-turbine case under full-wake conditions $\theta_w = 270^\circ$, predicted by the standard and extended $k-\varepsilon$ models against large-eddy simulations from the study of [Eidi et al. (2021)](https://doi.org/10.1016/j.renene.2021.08.012). The inter-turbine spacing is 7 rotor diameters and the turbines have a rotor diameter, hub height, and an induction factor of 80 m, 70 m, and 0.25, respectively. The inflow velocity and inflow turbulence intensity at the hub height are 8 m/s and 5.8\%, respectively.
 
-  <img src="https://github.com/nzhtbyn/Extended-kEpsilon-WindFarmSimulation/blob/main/testCase/case1_layout_NP.png" width="900" height="150" alt="Normalized power of turbines in three validation cases">
+  <img src="https://github.com/AUfluids/k-epsilon-Sk/blob/main/testCase/case1_layout_NP.png" width="900" height="150" alt="Normalized power of turbines in three validation cases">
 
 The performance of the extended $k-\varepsilon$ model has been further assessed through extensive testing against data from wind-tunnel measurements and large-eddy simulations for three validation cases with different layouts under full and partial wake conditions, a $10 \times 3$ array of turbines, and the Horns rev 1 Offshore Wind Farm in the study of [Zehtabiyan-Rezaie and Abkar (2024)](https://doi.org/10.1016/j.renene.2023.119904).
 
