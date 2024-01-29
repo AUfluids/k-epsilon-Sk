@@ -7,7 +7,7 @@
 
 
 # k-epsilon-Sk
-An extended $k-\varepsilon$ model, called \varepsilon-S_k$, integrated with OpenFOAM for simulation of turbine wakes and power losses in wind farms, developed by [Zehtabiyan-Rezaie and Abkar (2024)](https://doi.org/10.1016/j.renene.2023.119904) at the Fluid Mechanics and Turbulence research group at Aarhus University, Denmark. 
+An extended $k-\varepsilon$ model, called $\varepsilon-S_k$, integrated with OpenFOAM for simulation of turbine wakes and power losses in wind farms, developed by [Zehtabiyan-Rezaie and Abkar (2024)](https://doi.org/10.1016/j.renene.2023.119904) at the Fluid Mechanics and Turbulence research group at Aarhus University, Denmark. 
 
 # Description
 We introduce an extended version of the standard $k-\varepsilon$ model within the OpenFOAM framework, with a primary focus on its application in the context of wind-farm simulations. The standard $k-\varepsilon$ model, while widely used, is known to exhibit limitations in accurately representing turbulence characteristics within the wake region of turbines. This often results in an overestimation of turbulence intensity and, consequently, an inaccurate prediction of the power losses in wind farms. To address this challenge, $k-\varepsilon-S_k$ model incorporates an additional term in the turbulent kinetic energy transport equation, which accounts for the influence of turbine forces. This modification is based on a rigorous analytical approach derived from fundamental physical principles. For a comprehensive understanding of $k-\varepsilon-S_k$ model and its application in wind-farm simulation, additional information can be found in this [publication](https://doi.org/10.1016/j.renene.2023.119904).
