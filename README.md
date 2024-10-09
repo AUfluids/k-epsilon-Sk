@@ -6,7 +6,7 @@
 <!-- [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)   -->
 
 
-# k-epsilon-Sk
+# k-epsilon-Sk-WindFarm
 An extended $k-\varepsilon$ model, called $k-\varepsilon-S_k$, integrated with OpenFOAM for simulation of turbine wakes and power losses in wind farms, developed by [Zehtabiyan-Rezaie and Abkar (2024)](https://doi.org/10.1016/j.renene.2023.119904) at the Fluid Mechanics and Turbulence research group at Aarhus University, Denmark. 
 
 # Description
