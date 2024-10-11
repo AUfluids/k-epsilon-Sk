@@ -33,7 +33,7 @@ $\bullet$ Copy the folder _ADM_NR_diskBased_ to your work directory, and compile
  
 3- Copy the folder _testCase_ to your run directory. To initiate the simulation, adjust number of _numberOfSubdomains_ in _system/decomposeParDict_, and execute the following command:
 
-`.//Allrun`
+`./Allrun`
 
 
 If you use $ck = 0$ in the _kSource_'s implemented in _fvOptions_ file as _scalarCodedSource_, the additional term in the turbulent kinetic energy equation is deactivated, and the model transforms to the standard $k-\varepsilon$.
